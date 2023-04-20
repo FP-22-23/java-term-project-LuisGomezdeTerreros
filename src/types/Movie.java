@@ -3,6 +3,7 @@ package types;
 import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import utils.Checkers;
@@ -20,13 +21,14 @@ public class Movie {
 	private Casting casting;
 	
 	private Integer no_of_Votes;
-	private Double gross;
+	private Integer gross;
 	private LocalDate releaded_Date;
 	
 	
-	public Movie(String series_title, Integer released_year, Certificate certificate, Integer runtime, ArrayList<String> genres,
-			 Integer imbd_rating, Integer meta_score, String director,
-			 Integer no_of_Votes, Double gross, LocalDate releaded_Dat, Casting casting) {
+	public Movie(String series_title, Integer released_year, Certificate certificate, 
+			Integer runtime,ArrayList<String> genres,
+			 Integer imbd_rating, Integer meta_score, String director, Casting casting,
+			 Integer no_of_Votes, Integer gross, LocalDate releaded_Date) {
 		super();
 		this.series_title = series_title;
 		this.released_year = released_year;
@@ -44,12 +46,12 @@ public class Movie {
 		if (imbd_rating < 10 ) {
 			this.imbd_rating = imbd_rating * 10;}
 		else {this.imbd_rating = imbd_rating;}
-		Checkers.check("The rating has to be between 0 and a 100, ",0 <this.imbd_rating && this.imbd_rating < 100 );
-		Checkers.check("The rating has to be between 0 and a 100, ",0 < this.meta_score && this.meta_score < 100 );
+		Checkers.check("The rating has to be between 0 and a 100, ",0 <this.imbd_rating && this.imbd_rating <= 100 );
+		Checkers.check("The rating has to be between 0 and a 100, ",0 < this.meta_score && this.meta_score <= 100 );
 
 	}
 	public Movie(String series_title, Integer runtime,
-			 Integer imbd_rating, Integer meta_score, Integer no_of_Votes, Double gross) {
+			 Integer imbd_rating, Integer meta_score, Integer no_of_Votes, Integer gross) {
 		this.series_title = series_title;
 		this.released_year = null;
 		this.certificate = null;
@@ -63,12 +65,13 @@ public class Movie {
 		this.gross = gross;
 		this.casting = null;
 
+
 		this.releaded_Date = null;
 		if (imbd_rating < 10 ) {
 			this.imbd_rating = imbd_rating * 10;}
 		else {this.imbd_rating = imbd_rating;}
-		Checkers.check("The rating has to be between 0 and a 100, ",0 <this.imbd_rating && this.imbd_rating < 100 );
-		Checkers.check("The rating has to be between 0 and a 100, ",0 < this.meta_score && this.meta_score < 100 );
+		Checkers.check("The rating has to be between 0 and a 100, ",0 <this.imbd_rating && this.imbd_rating <= 100 );
+		Checkers.check("The rating has to be between 0 and a 100, ",0 < this.meta_score && this.meta_score <= 100 );
 
 	}
 	
@@ -90,10 +93,16 @@ public class Movie {
 	}
 
 	public Certificate getCertificate() {
+		
+		
+		
 		return certificate;
 	}
 
 	public void setCertificate(Certificate certificate) {
+		
+		
+		
 		this.certificate = certificate;
 	}
 
@@ -111,7 +120,7 @@ public class Movie {
 	}
 
 	public void setImbd_rating(Integer imbd_rating) {
-		Checkers.check("The rating has to be between 0 and a 100, ",0 <this.imbd_rating && this.imbd_rating < 100 );
+		Checkers.check("The rating has to be between 0 and a 100, ",0 <this.imbd_rating && this.imbd_rating <= 100 );
 		if (imbd_rating < 10 ) {
 			this.imbd_rating = imbd_rating * 10;}
 		else {this.imbd_rating = imbd_rating;}
@@ -124,7 +133,7 @@ public class Movie {
 	}
 
 	public void setMeta_score(Integer meta_score) {
-		Checkers.check("The rating has to be between 0 and a 100, ",0 < this.meta_score && this.meta_score < 100 );
+		Checkers.check("The rating has to be between 0 and a 100, ",0 < this.meta_score && this.meta_score <= 100 );
 
 		this.meta_score = meta_score;
 	}
@@ -146,11 +155,11 @@ public class Movie {
 		this.no_of_Votes = no_of_Votes;
 	}
 
-	public Double getGross() {
+	public Integer getGross() {
 		return gross;
 	}
 
-	public void setGross(Double gross) {
+	public void setGross(Integer gross) {
 		this.gross = gross;
 	}
 
@@ -170,23 +179,38 @@ public class Movie {
 		return t ;
 	}
 
-	public Casting getCasting() {
-		return casting;
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(director, released_year, series_title);
 	}
-	public void setCasting(Casting casting) {
-		this.casting = casting;
-	}
+	
+	
+
+
 	public ArrayList<String> getGenres() {
 		return genres;
 	}
 	public void setGenres(ArrayList<String> genres) {
 		this.genres = genres;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(director, released_year, series_title);
+	public Casting getCasting() {
+		return casting;
 	}
-
+	public void setCasting(Casting casting) {
+		this.casting = casting;
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Movie [series_title=" + series_title + ", released_year=" + released_year + ", certificate="
+				+ certificate + ", runtime=" + runtime + ", genres=" + genres + ", imbd_rating=" + imbd_rating
+				+ ", meta_score=" + meta_score + ", director=" + director + ", casting=" + casting + ", no_of_Votes="
+				+ no_of_Votes + ", gross=" + gross + ", releaded_Date=" + releaded_Date + "]";
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -200,13 +224,8 @@ public class Movie {
 				&& Objects.equals(series_title, other.series_title);
 	}
 
-	@Override
-	public String toString() {
-		return "Movie [series_title=" + series_title + ", released_year=" + released_year + ", certificate="
-				+ certificate + ", runtime=" + runtime + ", genres=" + genres + ", imbd_rating=" + imbd_rating
-				+ ", meta_score=" + meta_score + ", director=" + director + ", casting=" + casting + ", no_of_Votes="
-				+ no_of_Votes + ", gross=" + gross + ", releaded_Date=" + releaded_Date + "]";
-	}
+	
+	
 	
 
 	public int compareTo(Movie another) {
@@ -219,25 +238,14 @@ public class Movie {
         }
         return compareValue;
         
-    }
-	public void  addlist(  String star1,String star2,String star3,String star4 ) {
-
-		getGenres().add(  star1    );
-		getGenres().add(  star2    );
-		getGenres().add(  star3    );
-		getGenres().add(  star4    );
-		
-		
 	}
-
 	
-	
+	//public SortedSet<Sighting> getSighstings
 	
 	
 	
 
 }
-
 
 
 
