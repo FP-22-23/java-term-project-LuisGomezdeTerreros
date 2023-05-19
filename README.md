@@ -54,7 +54,7 @@ The types implemented in the project
 - _releaded_Date_, of type LocalDate,  consultable y modifiable. Is the day/month/year of the release.     
 - _casting_ , of type Casting, consultable y modifiable . Is a record formed by the 4 actors Casting(String star1,String star2,String star3,String star4 )  
 
-** Constructors **
+**Constructors**
 
 - C1: Gets all basic properties.   
 - C2: Get the properties (String series_title, Integer runtime, Integer imbd_rating, Integer meta_score, Integer no_of_Votes, Double gross)    
@@ -81,42 +81,48 @@ The types implemented in the project
 
 - Factory class for building Movie objects:
 
--_readMovies (String filename )_ Creates an object of type Movies from the information collected in the csv file, whose path is given as a parameter.    
--_parseLine (String s)_ Receives a type String and does the parse returning a type Movie. 
--_parsegenres ( String gen)_ parses the genres, separaiting them by commas and adding them to a list returning a List<String>             
--_parseRuntime (String runtime)_ parses the runtime, taking out the " min" and converting it to a Intger.      
-- _parseCertificate ( String certificate)_  parses the certificates, depending on the String it will assign one of the four different certificates that are.     
+-_readMovies (String filename )_ Creates an object of type Movies from the information collected in the csv file, whose path is given as a parameter.        
+-_parseLine (String s)_ Receives a type String and does the parse returning a type Movie.       
+-_parsegenres ( String gen)_ parses the genres, separaiting them by commas and adding them to a list returning a List<String>               
+-_parseRuntime (String runtime)_ parses the runtime, taking out the " min" and converting it to a Intger.          
+-_parseCertificate ( String certificate)_  parses the certificates, depending on the String it will assign one of the four different certificates that are.                     
 
 ### Type Container - Movies
 
 **Properties:**   
 - **List<Movie> Movies**,  consultable and modifiable.                    
   
-**Constructors:**
-  - C1: Default constructor. Create a Movies object with no saved games.     
-  - C2: Constructor with a parameter of type Collection<Movie>. Creates an object of type Movies with the movies included in the collection given as a parameter.    
-  - C3: Constructor with a parameter of type Stream<Movie>. Creates a Movies object with the movies included in the given Stream 
+**Constructors:**            
+  - C1: Default constructor. Create a Movies object with no saved games.                      
+  - C2: Constructor with a parameter of type Collection<Movie>. Creates an object of type Movies with the movies included in the collection given as a parameter.       
+  - C3: Constructor with a parameter of type Stream<Movie>. Creates a Movies object with the movies included in the given Stream   
    
-***Equality criteria**. 
--They are equal if they have the same movies.
-### Other operations
+***Equality criteria**.            
+-They are equal if they have the same movies.        
+**Other operations**          
+- _Integer getNumberMovies( )_ Gives the number of number of Movie in movies.     
+- _void addMovie(Movie movie)_ Adds a movie to movies.        
+- _addCollectiona(Collection<Movie> t) Adds a elemento of type Collection<Movie> to the container.        
+- _void removeMovie(Movie m)_ Removes an element of type Movie from the container.      
+- _Boolean existsMovie ( String title)_ Returns a Boolean value True if exist the String title given to method, if it dosen't exist it returns a false value.        
+- _Double averageMetascore ( )_ Returns the average Metascore.       
+- _ArrayList<Movie> moreGrossThan (Integer gross )_  Returns a List<Movie> with the movies with a higher gross than the one that it's given to the method.      
+- _Map<Integer, List<String>> mapImbdratingmoviesnames()_ Returns a map in which the keys are the Imbd rating and the values and the values a list of titles of movies with that Imbd rating.      
+- _Map<Integer , Integer> mapAboveYearGross(Integer year)_  Returns a map in which the key are the years in which movies were released and the values are the gross of all the movies released that year. Filter by movies released after a given year.      
+- _Boolean existMovieStreams ( String title)_ Returns a Boolean value True if exist the String title given to method, if it dosen't exist it returns false value. Done with streams.      
+- _Double averageMetascoreStream()_ Returns the average Metascore . Done with streams.     
+- _List<Movie> moreGrossThanStream (Integer gross )_ Returns a List<Movie> with the movies with a higher gross than the one that it's given to the method. Done with streams.     
+- _String maxRuntimeAfterDate ( LocalDate date)_  Returns the title of the movie with biggest runtime that has been released after a given date.      
+- _List<Movie> moviesContainGenreSortbyRuntime ( String genre )_ Return a List<Movie> sorted by runtime , which contain a given genre.     
+- _ Map<Integer , Integer> mapYearGrossAboveYearStream(Integer year)_  Returns a map in which the key are the years in which movies were released and the values are the total gross of all the movies released that year. Filter by movies released after a given year. Done with Streams.      
+- _ Map<Integer, List<String>> mapImbdratingmoviesnamesStream()_ Returns a map in which the keys are the Imbd rating and the keys and the values a list of titles of movies with that Imbd rating. Done with streams.       
+- _Set<Integer >  setYearsaboveImbdrating( Integer Imbd)_ Returns set of years with movies above a IMBD rating.   
+- _Map<Certificate, String> mapCertificateTiltewithMaxNo_Votes()_  Returns a Map<Certificate, String> in which the keys are of type enum Certificate and the values are the titles of the movies with the highest grossing with that certificate.    
+- _Map<Certificate, List<String>> mapCertificateDirectorSortByImbdrating ()_  Returns a map in which the keys are certificates and values are a list of directors sorted by their IMBD rating
+- _Entry<String, Integer> directorHighestImbd_  Makes a Map in which the keys are the titles of the movies and the values are the IMBD rating. Then returns the Entry<String, Integer> WIth the director and their movie with highest IMBD rating.         
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+     
+     
+     
+     
+     
