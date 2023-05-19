@@ -1,14 +1,12 @@
 package types;
 
 import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import utils.Checkers;
 
-public class Movie {
+public class Movie implements Comparable <Movie> {
 	
 	private String series_title;
 	private Integer released_year;
@@ -174,8 +172,8 @@ public class Movie {
 	
 	
 	
-	public Integer averagescore ( ) {
-		Integer t = (imbd_rating * meta_score)/2;
+	public Integer averageScore ( ) {
+		Integer t = (imbd_rating + meta_score)/2;
 		return t ;
 	}
 
@@ -239,9 +237,7 @@ public class Movie {
         return compareValue;
         
 	}
-	
-	//public SortedSet<Sighting> getSighstings
-	
+		
 	
 	
 
